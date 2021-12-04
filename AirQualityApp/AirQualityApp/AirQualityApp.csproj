@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DynamicData" Version="7.2.1" />
+    <PackageReference Include="Esri.ArcGISRuntime.Toolkit.Xamarin.Forms" Version="100.11.0" />
+    <PackageReference Include="Esri.ArcGISRuntime.Xamarin.Forms" Version="100.11.2" />
+    <PackageReference Include="Google.Api.CommonProtos" Version="2.3.0" />
+    <PackageReference Include="Plugin.MaterialDesignControls" Version="1.10.6" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.Forms" Version="8.1.97" />
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2083" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\GoogleMapsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

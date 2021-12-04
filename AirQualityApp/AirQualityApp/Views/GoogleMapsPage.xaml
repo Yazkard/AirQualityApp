@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AirQualityApp.Views.GoogleMapsPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:AirQualityApp.ViewModels"  
+             xmlns:model="clr-namespace:AirQualityApp.Models" 
+             x:DataType="local:GoogleMapsViewModel"
+             x:Name="MapPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search this area" Command="{Binding LoadItemsCommand}" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+</ContentPage>
