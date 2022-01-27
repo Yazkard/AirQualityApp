@@ -18,7 +18,6 @@ namespace AirQualityApp.ViewModels
 
         public ObservableCollection<StationData> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
         public Command<StationData> ItemTapped { get; }
 
         public ItemsViewModel()
@@ -28,8 +27,6 @@ namespace AirQualityApp.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<StationData>(OnItemSelected);
-
-            AddItemCommand = new Command(OnAddItem);
             
         }
 
@@ -43,7 +40,7 @@ namespace AirQualityApp.ViewModels
                 var x = new RestService();
                 var location = await Geolocation.GetLocationAsync();
                 Position position = new Position(location.Latitude,location.Longitude);
-                var items = await x.RefreshDataAsync(new BoundingBox(position, 20));
+                var items = await x.RefreshDataAsync(new BoundingBox(position, 50));
                 items = items.OrderBy(y => y.DistanceToUser).ToList();
                 foreach (var item in items)
                 {

@@ -8,12 +8,18 @@ namespace AirQualityApp
 {
     public partial class App : Application
     {
+        public static IForecastProvider ForecastProvider { get; private set; }
+        public App(IForecastProvider forecastProvider)
+        {
+            InitializeComponent();
+            ForecastProvider = forecastProvider;
+            MainPage = new AppShell();
+        }
 
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

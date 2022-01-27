@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="AirQualityApp.Views.PredictionPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AirQualityApp.ViewModels"
+    xmlns:model="clr-namespace:AirQualityApp.Models"
+    xmlns:views="clr-namespace:AirQualityApp.Views"
+    x:Name="GetPredictionPage"
+    Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <views:InverseBoolConverter x:Key="InvertedBoolConverter" />
+            <views:CountConverter x:Key="CountConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <RefreshView
+                x:DataType="local:PredictionScreenViewModel"
+                Command="{Binding LoadCitiesCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <StackLayout Margin="10,0" Orientation="Vertical">
+                    <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="City :"
+                            VerticalOptions="Center"
+                            WidthRequest="60" />
+                        <Picker
+                            HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding Cities}"
+                            SelectedItem="{Binding SelectedCity}" />
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="Fill" Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Period :"
+                            VerticalOptions="Center"
+                            WidthRequest="60" />
+                        <Picker
+                            HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding PeriodOptions}"
+                            SelectedItem="{Binding ForecastType}" />
+                    </StackLayout>
+                    <Button Command="{Binding PerformForecastCommand}" Text="Perform Forecast" />
+                </StackLayout>
+            </RefreshView>
+            <RefreshView
+                x:DataType="local:PredictionScreenViewModel"
+                Command="{Binding PerformForecastCommand}"
+                IsRefreshing="{Binding IsBusyForecast, Mode=OneWay}">
+                <CollectionView
+                    x:Name="ItemsListView"
+                    Margin="10"
+                    HorizontalOptions="Fill"
+                    ItemsSource="{Binding PredictedValues}"
+                    SelectionMode="None">
+                    <CollectionView.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width=".2*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Date" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Text="AQI" />
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:DataType="model:ForecastData">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width=".2*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" />
+                                <Frame
+                                    Grid.Column="1"
+                                    Margin="1"
+                                    Padding="1"
+                                    BackgroundColor="{Binding Color}"
+                                    CornerRadius="5">
+                                    <Label
+                                        FontSize="18"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Aqi}"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

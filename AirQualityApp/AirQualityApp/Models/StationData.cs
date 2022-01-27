@@ -31,20 +31,19 @@ namespace AirQualityApp.Models
             if (v)
             {
                 Aqi = x;
-                if (x < 20)
+                if (x < 51)
                 {
                     Color = Color.Green;
-                } else if(x<40)
-                {
-                    Color = Color.YellowGreen;
-                }
-                else if (x < 80)
-                {
+                } else if (x < 101) {
                     Color = Color.Yellow;
-                }
-                else
-                {
+                } else if (x < 151) {
+                    Color = Color.Orange;
+                } else if (x < 201) {
                     Color = Color.Red;
+                } else if (x < 301) {
+                    Color = Color.Purple;
+                } else {
+                    Color = Color.Maroon;
                 }
             } else {
                 Color = Color.White;

@@ -26,46 +26,10 @@ namespace AirQualityApp.ViewModels
         public Command LoadItemsCommand { get; }
         public GoogleMapsViewModel(CustomMap map)
         {
-            Title = "Browse";
+            Title = "Map";
             _Map = map;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             
-            //ExecuteLoadItemsCommand();
-            //MapItemsSourceList.Connect().Bind(MapItemsObservableCollection).Subscribe();
-            //GoogleMap.ItemsSource = MapItemsObservableCollection;
-            //Polygon polygon = new Polygon
-            //{
-            //    StrokeWidth = 8,
-            //    StrokeColor = Color.FromHex("#1BA1E2"),
-            //    FillColor = Color.FromHex("#881BA1E2"),
-            //    Geopath =
-            //    {
-            //        new Position(47.6368678, -122.137305),
-            //        new Position(47.6368894, -122.134655),
-            //        new Position(47.6359424, -122.134655),
-            //        new Position(47.6359496, -122.1325521),
-            //        new Position(47.6424124, -122.1325199),
-            //        new Position(47.642463,  -122.1338932),
-            //        new Position(47.6406414, -122.1344833),
-            //        new Position(47.6384943, -122.1361248),
-            //        new Position(47.6372943, -122.1376912)
-            //    }
-            //};
-
-            // add the polygon to the map's MapElements collection
-            //map.MapElements.Add(polygon);
-            //Pin pin = new Pin
-            //{
-            //    Label = "Santa Cruz",
-            //    Address = "The city with a boardwalk",
-            //    Type = PinType.Place,
-            //    Position = new Position(47.9628066, -122.0194722)
-            //};
-            //map.Pins.Add(pin);
-            //_Map.CustomPins = new List<CustomPin> { pin2 };
-            //_Map.Pins.Add(pin2);
-
-            //this.WhenValueChanged(y => y.MapItemsObservableCollection).Subscribe(z => UpdateMapPins());
         }
 
         public async Task ExecuteLoadItemsCommand()

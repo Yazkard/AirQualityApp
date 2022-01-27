@@ -38,7 +38,7 @@ namespace AirQualityApp.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine(content);
+                    //Debug.WriteLine(content);
                     mapRestResponse = JsonSerializer.Deserialize<MapRestResponse>(content, serializerOptions);
                 }
             }
